@@ -153,14 +153,14 @@ p {
 }
 
 /* ============================= */
-/* ==== HERO ================== */
+/* ====  ================== */
 /* ============================= */
 
-.hero {
+. {
   padding-top: 140px;
 }
 
-.hero-grid {
+.-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -177,6 +177,12 @@ p {
   justify-content: center;
 }
 
+.hero-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
 
 /* ============================= */
 /* ==== SECTIONS ============== */
@@ -279,7 +285,7 @@ footer {
       <a href="#" class="btn-primary">Start Free Trial</a>
     </div>
     <div class="hero-image">
-      <img src="images/AppST.png" alt="Homeschool App Screenshot" style="width:100%; height:auto; border-radius: var(--radius-large); box-shadow: var(--shadow-soft);">
+      <img src="images/AppST.png" alt="App Screenshot" class="hero-img">
     </div>
   </div>
 </section>
