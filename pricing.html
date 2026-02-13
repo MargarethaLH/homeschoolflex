@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing</title>
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Stripe Pricing Table Script -->
+  <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+</head>
+
+<body>
+
+  <!-- Header loads from main.js -->
+  <div id="header"></div>
+
+  <!-- PRICING SECTION -->
+  <section class="container hero fade-in" style="text-align:center; padding-top:120px;">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Choose the plan that fits your family.</p>
+
+    <div style="margin-top:60px;">
+      <stripe-pricing-table
+        pricing-table-id="prctbl_1SXw4e5QCcqLdqJuTtq8Lw9L"
+        publishable-key="pk_live_51SXveV5QCcqLdqJuZX2Z9S3zMmFlD5tnDpwnJWCdjFo2P3HsTQkYAmOh2oZc7qUNJo7O63WNp1CsS3Z2OZIJPZll00rYndMOdm">
+      </stripe-pricing-table>
+    </div>
+  </section>
+
+  <!-- Footer loads from main.js -->
+  <div id="footer"></div>
+
+  <!-- Main JS -->
+  <script src="/main.js"></script>
+
+</body>
+</html>

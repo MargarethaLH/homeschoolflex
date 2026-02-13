@@ -1,0 +1,54 @@
+<!-- ============================= -->
+<!-- ========= HEADER ============ -->
+<!-- ============================= -->
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+
+<div class="navbar">
+  <div class="nav-inner">
+    <div>
+      <a href="index.html">
+        <img src="images/HSF_Icon.png" alt="Logo" style="height:42px;">
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="pricing.html" class="btn-primary">Start Free Trial</a>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#features">Features</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="pricing.html" class="btn-primary">Start Free Trial</a>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("mobileMenu").classList.toggle("active");
+}
+
+const faders = document.querySelectorAll('.fade-in');
+const appearOptions = { threshold: 0.2 };
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
+  });
+}, appearOptions);
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
+</script>
