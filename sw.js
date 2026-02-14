@@ -1,23 +1,21 @@
-const CACHE_NAME = "app-cache-v1";
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/main.js",
-  "/styles.css",
-  "/header.html",
-  "/footer.html"
-];
+const CACHE_NAME = "hsflex-cache-v1.1";
 
-// Install
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/styles.css",
+        "/main.js",
+        "/header.html",
+        "/footer.html"
+      ]);
+    })
   );
   self.skipWaiting();
 });
 
-// Activate
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -33,9 +31,10 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// Fetch
 self.addEventListener("fetch", event => {
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
