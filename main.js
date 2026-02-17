@@ -27,15 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ============================= */
   /* LOAD FOOTER                   */
   /* ============================= */
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      const footerContainer = document.getElementById('footer');
-      if (footerContainer) {
-        footerContainer.innerHTML = data;
-      }
-    })
-    .catch(error => console.error('Footer load error:', error));
+fetch('footer_1.html', { cache: "no-store" })
+  .then(response => response.text())
+  .then(data => {
+    const footerContainer = document.getElementById('footer');
+    if (footerContainer) {
+      footerContainer.innerHTML = data;
+    }
+  })
+  .catch(error => console.error('Footer load error:', error));
+
 
 
   /* ============================= */
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /* ============================= */
 /* SERVICE WORKER REGISTRATION   */
-/* ============================= */
+/* ==============
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
@@ -79,4 +80,28 @@ if ('serviceWorker' in navigator) {
         console.error('Service Worker registration failed:', error);
       });
   });
-}
+}=============== */
+
+
+/* ============================= */
+/* Nav bar button highlighter   */
+/* ============================= */
+document.addEventListener("DOMContentLoaded", function () {
+  const currentPage = window.location.pathname.split("/").pop();
+
+  const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
+
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("#")[0];
+
+    if (linkPage === currentPage) {
+      link.classList.add("active");
+    }
+
+    // Special case for homepage
+    if ((currentPage === "" || currentPage === "index.html") &&
+        (linkPage === "index.html")) {
+      link.classList.add("active");
+    }
+  });
+});

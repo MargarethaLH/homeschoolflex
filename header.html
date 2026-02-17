@@ -32,24 +32,3 @@
   <a href="contact.html">Contact</a>
   <a href="pricing.html" class="btn-primary">Start Free Trial</a>
 </div>
-
-<script>
-function toggleMenu() {
-  document.getElementById("mobileMenu").classList.toggle("active");
-}
-
-const faders = document.querySelectorAll('.fade-in');
-const appearOptions = { threshold: 0.2 };
-
-const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
-  });
-}, appearOptions);
-
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
-});
-</script>
