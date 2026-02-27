@@ -3,25 +3,48 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ============================= */
   /* LOAD HEADER                   */
   /* ============================= */
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      const headerContainer = document.getElementById('header');
-      if (headerContainer) {
-        headerContainer.innerHTML = data;
+fetch('header.html')
+  .then(response => response.text())
+  .then(data => {
+    const headerContainer = document.getElementById('header');
+    if (headerContainer) {
+      headerContainer.innerHTML = data;
 
-        // Attach mobile menu toggle AFTER header loads
-        const hamburger = headerContainer.querySelector('.hamburger');
-        const mobileMenu = headerContainer.querySelector('#mobileMenu');
+      // Attach mobile menu toggle AFTER header loads
+      const hamburger = headerContainer.querySelector('.hamburger');
+      const mobileMenu = headerContainer.querySelector('#mobileMenu');
 
-        if (hamburger && mobileMenu) {
-          hamburger.addEventListener('click', function () {
-            mobileMenu.classList.toggle('active');
-          });
-        }
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function () {
+          mobileMenu.classList.toggle('active');
+        });
       }
-    })
-    .catch(error => console.error('Header load error:', error));
+
+      // 👇 ADD THIS LINE
+      highlightActiveNav();
+    }
+  })
+  .catch(error => console.error('Header load error:', error));
+
+
+
+function highlightActiveNav() {
+  const currentPage =
+    window.location.pathname.split("/").pop() || "index.html";
+
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  navLinks.forEach(link => {
+    const linkHref = link.getAttribute("href");
+    if (!linkHref) return;
+
+    const cleanHref = linkHref.split("#")[0];
+
+    if (cleanHref === currentPage) {
+      link.classList.add("active");
+    }
+  });
+}
 
 
   /* ============================= */
@@ -126,4 +149,25 @@ document.querySelectorAll(".modal-overlay").forEach(overlay => {
       overlay.classList.remove("active");
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const currentPath = window.location.pathname;
+  const currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1) || "index.html";
+
+  const navLinks = document.querySelectorAll(".nav-links a");
+
+  navLinks.forEach(link => {
+    const linkHref = link.getAttribute("href");
+
+    if (!linkHref) return;
+
+    const cleanHref = linkHref.split("#")[0];
+
+    if (cleanHref === currentPage) {
+      link.classList.add("active");
+    }
+  });
+
 });
