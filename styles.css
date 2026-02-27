@@ -271,3 +271,295 @@ p { color: var(--color-text-muted); line-height: 1.6; }
   background-color: #2e7d32; /* Same brand color */
   border-radius: 2px;
 }
+
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.video-card {
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-large);
+  border: none;
+}
+
+.video-card h3 {
+  margin-top: 15px;
+}
+
+/* Gallery Grid */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Lightbox */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: var(--radius-large);
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  text-decoration: none;
+}
+
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 40px;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox-content {
+  text-align: center;
+  color: white;
+}
+
+.lightbox-content img {
+  max-width: 90vw;
+  max-height: 75vh;
+  border-radius: var(--radius-large);
+}
+
+.lightbox-title {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+/* Features Section */
+
+.features-section {
+  padding: 100px 0;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.features-title {
+  margin-bottom: 60px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Disable lightbox on mobile */
+@media (max-width: 768px) {
+
+  /* Prevent clicking images */
+  .gallery-grid a {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  /* Hide lightbox overlays entirely */
+  .lightbox {
+    display: none !important;
+  }
+
+}
+
+/* Feature click effect */
+.feature-card {
+  cursor: pointer;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+/* Active state */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Window */
+.modal-window {
+  background: white;
+  padding: 50px;
+  max-width: 600px;
+  width: 90%;
+  border-radius: var(--radius-large);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-window {
+  transform: scale(1);
+}
+
+.modal-window h2 {
+  margin-bottom: 20px;
+}
+
+.modal-window p {
+  margin-bottom: 15px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.feature-card {
+  background: #ffffff;
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+  margin: 20px 0 15px;
+  font-size: 1.3rem;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 42px;
+}
+
+/* BETA badge */
+.beta-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff8c42, #ff5e62);
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(255, 94, 98, 0.3);
+  white-space: nowrap;
+}
