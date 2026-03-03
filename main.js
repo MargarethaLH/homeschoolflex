@@ -35,6 +35,8 @@ function highlightActiveNav() {
   const navLinks = document.querySelectorAll(".nav-links a");
 
   navLinks.forEach(link => {
+    if (link.classList.contains("btn-primary")) return;
+
     const linkHref = link.getAttribute("href");
     if (!linkHref) return;
 
@@ -115,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
 
   navLinks.forEach(link => {
+    if (link.classList.contains("btn-primary")) return;
+
     const linkPage = link.getAttribute("href").split("#")[0];
 
     if (linkPage === currentPage) {
@@ -159,6 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".nav-links a");
 
   navLinks.forEach(link => {
+    if (link.classList.contains("btn-primary")) return;
+
     const linkHref = link.getAttribute("href");
 
     if (!linkHref) return;
