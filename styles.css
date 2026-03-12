@@ -52,6 +52,13 @@ p { color: var(--color-text-muted); line-height: 1.6; }
   background: var(--color-primary-hover);
 }
 
+.no-card-note {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  font-weight: 700;
+}
+
 /* NAVBAR */
 .navbar {
   position: fixed;
