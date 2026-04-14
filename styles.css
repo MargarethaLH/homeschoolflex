@@ -91,6 +91,58 @@ p { color: var(--color-text-muted); line-height: 1.6; }
   transition: all 0.2s ease;
 }
 
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+.nav-dropdown-toggle {
+  position: relative;
+  padding-right: 18px;
+}
+
+.nav-dropdown-toggle::before {
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-52%);
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  min-width: 220px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-2px);
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.nav-dropdown-menu a {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 .hamburger {
   display: none;
   font-size: 24px;
@@ -119,6 +171,33 @@ p { color: var(--color-text-muted); line-height: 1.6; }
   text-decoration: none;
   color: var(--color-text);
   font-weight: 600;
+}
+
+.mobile-dropdown {
+  margin-bottom: 20px;
+}
+
+.mobile-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.mobile-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-dropdown summary::after {
+  content: "▾";
+  margin-left: 6px;
+  font-size: 12px;
+}
+
+.mobile-dropdown a {
+  margin-left: 10px;
+  margin-bottom: 14px;
 }
 
 /* FADE */
@@ -189,6 +268,28 @@ p { color: var(--color-text-muted); line-height: 1.6; }
     box-shadow: var(--shadow-soft);
     padding: 30px;
     text-align: center;
+}
+
+.schedule-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    border: 2px dashed #cbd5e1;
+    background: #f6f8fa;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    padding: 20px;
+    text-align: center;
+}
+
+.schedule-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
 }
 
 /* ============================= */

@@ -67,4 +67,46 @@
     <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://homeschoolflex.com/problems-with-homeschooling.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/scheduling-and-rescheduling-takes-too-long.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/keeping-records-is-hard.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/lesson-plan-not-working.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/build-your-own-curriculum.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/reporting-grades-and-attendance-is-difficult.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://homeschoolflex.com/tracking-homeschool-expenses-is-difficult.html</loc>
+    <lastmod>2026-04-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
