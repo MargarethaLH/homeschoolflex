@@ -26,7 +26,51 @@
 
 <body>
 
-<div id="header"></div>
+<div class="navbar">
+  <div class="nav-inner">
+    <div>
+      <div class="logo-wrapper">
+        <a href="index.html" class="logo-link">
+          <img src="images/HSF_Icon.png" alt="Logo" class="logo-img">
+        </a>
+        <span class="beta-badge">Now in BETA</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <div class="nav-dropdown">
+        <a href="problems-with-homeschooling.html" class="nav-dropdown-toggle">Resources</a>
+        <div class="nav-dropdown-menu">
+          <a href="problems-with-homeschooling.html">Problems with homeschooling</a>
+          <a href="videos.html">Video Tutorials</a>
+          <a href="gallery.html">Image Gallery</a>
+        </div>
+      </div>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About Us</a>
+      <a href="pricing.html" class="btn-primary">60-Day Free Trial</a>
+    </div>
+
+    <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-controls="mobileMenu" aria-expanded="false">☰</button>
+  </div>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#features">Features</a>
+  <details class="mobile-dropdown">
+    <summary>Problems with homeschooling</summary>
+    <a href="problems-with-homeschooling.html">Problems with homeschooling</a>
+    <a href="videos.html">Video Tutorials</a>
+    <a href="gallery.html">Image Gallery</a>
+  </details>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="about.html">About Us</a>
+  <a href="pricing.html" class="btn-primary">60-Day Free Trial</a>
+</div>
+
 
 <section class="container hero fade-in" style="text-align:center;">
 

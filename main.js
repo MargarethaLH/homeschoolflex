@@ -1,38 +1,81 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener("click", function () {
+      const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", String(!isExpanded));
+      mobileMenu.classList.toggle("active");
+    });
+  }
+
+  highlightActiveNav();
 
   /* ============================= */
-  /* LOAD HEADER                   */
+  /* LOAD FOOTER                   */
   /* ============================= */
-fetch('header.html')
-  .then(response => response.text())
-  .then(data => {
-    const headerContainer = document.getElementById('header');
-    if (headerContainer) {
-      headerContainer.innerHTML = data;
-
-      // Attach mobile menu toggle AFTER header loads
-      const hamburger = headerContainer.querySelector('.hamburger');
-      const mobileMenu = headerContainer.querySelector('#mobileMenu');
-
-      if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', function () {
-          mobileMenu.classList.toggle('active');
-        });
+  fetch("footer_1.html", { cache: "no-store" })
+    .then(response => response.text())
+    .then(data => {
+      const footerContainer = document.getElementById("footer");
+      if (footerContainer) {
+        footerContainer.innerHTML = data;
       }
+    })
+    .catch(error => console.error("Footer load error:", error));
 
-      // 👇 ADD THIS LINE
-      highlightActiveNav();
-    }
-  })
-  .catch(error => console.error('Header load error:', error));
+  /* ============================= */
+  /* FADE-IN SCROLL ANIMATION      */
+  /* ============================= */
+  const faders = document.querySelectorAll(".fade-in");
 
+  if (faders.length > 0) {
+    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
 
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  }
+
+  document.querySelectorAll(".feature-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const modalId = card.getAttribute("data-modal");
+      const modal = modalId ? document.getElementById(modalId) : null;
+      if (modal) {
+        modal.classList.add("active");
+      }
+    });
+  });
+
+  document.querySelectorAll(".modal-close").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const overlay = btn.closest(".modal-overlay");
+      if (overlay) {
+        overlay.classList.remove("active");
+      }
+    });
+  });
+
+  document.querySelectorAll(".modal-overlay").forEach(overlay => {
+    overlay.addEventListener("click", e => {
+      if (e.target === overlay) {
+        overlay.classList.remove("active");
+      }
+    });
+  });
+});
 
 function highlightActiveNav() {
-  const currentPage =
-    window.location.pathname.split("/").pop() || "index.html";
-
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
 
   navLinks.forEach(link => {
     if (link.classList.contains("btn-primary")) return;
@@ -40,61 +83,21 @@ function highlightActiveNav() {
     const linkHref = link.getAttribute("href");
     if (!linkHref) return;
 
-    const cleanHref = linkHref.split("#")[0];
+    const cleanHref = linkHref.split("#")[0] || "index.html";
 
     if (cleanHref === currentPage) {
+      link.classList.add("active");
+    }
+
+    if ((currentPage === "" || currentPage === "index.html") && cleanHref === "index.html") {
       link.classList.add("active");
     }
   });
 }
 
-
-  /* ============================= */
-  /* LOAD FOOTER                   */
-  /* ============================= */
-fetch('footer_1.html', { cache: "no-store" })
-  .then(response => response.text())
-  .then(data => {
-    const footerContainer = document.getElementById('footer');
-    if (footerContainer) {
-      footerContainer.innerHTML = data;
-    }
-  })
-  .catch(error => console.error('Footer load error:', error));
-
-
-
-  /* ============================= */
-  /* FADE-IN SCROLL ANIMATION      */
-  /* ============================= */
-  const faders = document.querySelectorAll('.fade-in');
-
-  if (faders.length > 0) {
-    const appearOptions = {
-      threshold: 0.2
-    };
-
-    const appearOnScroll = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-  }
-
-});
-
-
 /* ============================= */
 /* SERVICE WORKER REGISTRATION   */
-/* ==============
-
+/* =============================
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/sw.js')
@@ -105,75 +108,5 @@ if ('serviceWorker' in navigator) {
         console.error('Service Worker registration failed:', error);
       });
   });
-}=============== */
-
-
-/* ============================= */
-/* Nav bar button highlighter   */
-/* ============================= */
-document.addEventListener("DOMContentLoaded", function () {
-  const currentPage = window.location.pathname.split("/").pop();
-
-  const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
-
-  navLinks.forEach(link => {
-    if (link.classList.contains("btn-primary")) return;
-
-    const linkPage = link.getAttribute("href").split("#")[0];
-
-    if (linkPage === currentPage) {
-      link.classList.add("active");
-    }
-
-    // Special case for homepage
-    if ((currentPage === "" || currentPage === "index.html") &&
-        (linkPage === "index.html")) {
-      link.classList.add("active");
-    }
-  });
-});
-
-
-document.querySelectorAll(".feature-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const modalId = card.getAttribute("data-modal");
-    document.getElementById(modalId).classList.add("active");
-  });
-});
-
-document.querySelectorAll(".modal-close").forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.closest(".modal-overlay").classList.remove("active");
-  });
-});
-
-document.querySelectorAll(".modal-overlay").forEach(overlay => {
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.classList.remove("active");
-    }
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const currentPath = window.location.pathname;
-  const currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1) || "index.html";
-
-  const navLinks = document.querySelectorAll(".nav-links a");
-
-  navLinks.forEach(link => {
-    if (link.classList.contains("btn-primary")) return;
-
-    const linkHref = link.getAttribute("href");
-
-    if (!linkHref) return;
-
-    const cleanHref = linkHref.split("#")[0];
-
-    if (cleanHref === currentPage) {
-      link.classList.add("active");
-    }
-  });
-
-});
+}
+*/
